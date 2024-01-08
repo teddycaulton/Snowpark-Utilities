@@ -6,9 +6,8 @@ import pandas as pd
 class snowpark_utilities:
     def __init__(self, region_name = 'us-east-1', cloud_provider = "aws", aws_access_key_id = "", aws_secret_access_key = ""):
         # define normal variables
-        self.region_name = region_name
-        self.cloud_provider = cloud_provider
         if cloud_provider == "aws":
+            self.region_name = region_name
             self.aws_access_key_id = aws_access_key_id
             self.aws_secret_access_key = aws_secret_access_key
     
