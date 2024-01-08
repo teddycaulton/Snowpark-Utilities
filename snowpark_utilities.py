@@ -1,8 +1,6 @@
 import boto3
 import json
 from snowflake.snowpark.session import Session
-import time
-import re
 import pandas as pd
 
 class snowpark_utilities:
