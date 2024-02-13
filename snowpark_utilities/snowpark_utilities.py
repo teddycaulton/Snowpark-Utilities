@@ -2,6 +2,7 @@ import boto3
 import json
 from snowflake.snowpark.session import Session
 import pandas as pd
+import logging
 
 class snowpark_utilities:
     def __init__(self, region_name = 'us-east-1', cloud_provider = "aws", aws_access_key_id = "", aws_secret_access_key = ""):
@@ -27,7 +28,7 @@ class snowpark_utilities:
             credentials = json.loads(response['SecretString'])
             return credentials
         except:
-            print("An error occurred on service side")
+            logging.error("An error occurred on service side")
         return 0
     
     @staticmethod
