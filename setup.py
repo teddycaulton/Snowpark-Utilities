@@ -1,10 +1,18 @@
 from distutils.core import setup
+
+# read the contents of your README file
+from pathlib import Path
+this_directory = Path(__file__).parent
+long_description = (this_directory / "README.md").read_text()
+
 setup(
   name = 'snowpark_utilities',         # How you named your package folder (MyLib)
   packages = ['snowpark_utilities'],   # Chose the same as "name"
   version = '0.1.0',      # Start with a small number and increase it with every change you make
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'A helpful package for making snowpark code easier to write and more legible',   # Give a short description about your library
+  long_description=long_description,
+  long_description_content_type='text/markdown',
   author = 'Theodore Caulton',                   # Type in your name
   author_email = 'teddycaulton@live.com',      # Type in your E-Mail
   url = 'https://teddycaulton.xyz',   # Provide either the link to your github or to your website
