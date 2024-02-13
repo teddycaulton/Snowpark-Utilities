@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: snowpark-utilities
+Version: 0.1.0
+Summary: A helpful package for making snowpark code easier to write and more legible
+Home-page: https://teddycaulton.xyz
+Download-URL: https://github.com/teddycaulton/Snowpark-Utilities/archive/refs/tags/v_010.tar.gz
+Author: Theodore Caulton
+Author-email: teddycaulton@live.com
+License: MIT
+Keywords: Snowpark,Snowflake,Data Science
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+License-File: LICENSE.txt
