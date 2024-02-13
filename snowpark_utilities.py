@@ -6,7 +6,7 @@ import pandas as pd
 class snowpark_utilities:
     def __init__(self, region_name = 'us-east-1', cloud_provider = "aws", aws_access_key_id = "", aws_secret_access_key = ""):
         # define normal variables
-        if cloud_provider == "aws":
+        if cloud_provider == "aws" or cloud_provider == "AWS":
             self.region_name = region_name
             self.aws_access_key_id = aws_access_key_id
             self.aws_secret_access_key = aws_secret_access_key
@@ -56,3 +56,8 @@ class snowpark_utilities:
     def execute_sql(session, command):
         sql_command = session.sql(command)
         return sql_command.collect()
+        
+    @staticmethod
+    def execute_sql_pandas(session, command):
+        sql_command = session.sql(command)
+        return sql_command.to_pandas()
