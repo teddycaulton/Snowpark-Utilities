@@ -63,7 +63,7 @@ class snowpark_utilities:
         sql_command = session.sql(command)
         return sql_command.to_pandas()
     
-    def snoflake2snowflakevalidation(self, session_source, session_target, database):
+    def snowflake2snowflakevalidation(self, session_source, session_target, database):
         results_db = pd.DataFrame()
         databases = []
         schemas = []
