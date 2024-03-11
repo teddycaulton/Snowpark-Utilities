@@ -21,3 +21,9 @@ This function is a version of create_snowpark_session() made explicitely for use
 
 ## execute_sql(session, command)
 An annoyance I've had with snowpark in terms of ease of use and code readability is that defining code and executing code are two distinctly different operations.  you can always define a piece of SQL code for operation using session.sql("sql code") but executing requires a .collect() at the end of this line.  This command takes in the given session and desired command and executes it all at once.  if you wish to do anything with .to_pandas() you will still need to define that manualy but this works great for anything else and the function returns the .collect() so you could also run the function within a pd.Dataframe()
+
+## execute_sql_pandas(session, command)
+created command that given a SELECT command returns a pandas dataframe
+
+## snowflake2snowflakevalidation(session_source, session_target, database)
+In the case of database migration, it can be time consuming to ensure all tables were successfully migrated. this function takes in a source and target snowpark session along with the database in question and returns a dataframe of all tables from the source and the associated row count between the two tables.
