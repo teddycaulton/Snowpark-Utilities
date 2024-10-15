@@ -30,7 +30,7 @@ class snowpark_utilities:
         except:
             logging.error("An error occurred on service side")
         return 0
-    
+
     @staticmethod
     def create_snowpark_session(username, password, account, role = "ACCOUNTADMIN", warehouse = "COMPUTE_WH"):
 
@@ -125,3 +125,41 @@ class snowpark_utilities:
         results_db["target_count"] = target_count
 
         return results_db
+    
+    @staticmethod
+    def parse_csv(df, varchar):
+
+        table_info = pd.DataFrame(columns = ['Column Name', 'Data Type'])
+
+        for column in df.columns.values.tolist():
+            if varchar:
+                table_info.loc[len(table_info.index)] = [column, 'varchar(16777216)']
+            elif (df[column].dtype.name == "int" or df[column].dtype.name == "int64"):
+                table_info.loc[len(table_info.index)] = [column, 'int']
+            elif df[column].dtype.name == "object":
+                table_info.loc[len(table_info.index)] = [column, 'varchar(16777216)']
+            elif df[column].dtype.name == "datetime64[ns]":
+                table_info.loc[len(table_info.index)] = [column, 'datetime']
+            elif df[column].dtype.name == "float64":
+                table_info.loc[len(table_info.index)] = [column, 'float8']
+            elif df[column].dtype.name == "bool":
+                table_info.loc[len(table_info.index)] = [column, 'boolean']
+            else:
+                table_info.loc[len(table_info.index)] = [column, 'varchar(16777216)']
+        
+        return table_info
+
+    def create_table_statement(self, database,schema,table, df, uppercase = False, varchar = False):
+        table_info = self.parse_csv(df, varchar)
+        ## Create the table if it doesn't exist:
+        create_tbl_statement = f'CREATE TABLE IF NOT EXISTS {database}.{schema}.{table} ('
+
+        table_info = table_info.reset_index()
+        for index, row in table_info.iterrows():
+            if uppercase:
+                create_tbl_statement = create_tbl_statement + '"' + row['Column Name'].upper() + '" ' + row['Data Type'] + ', '
+            else:
+                create_tbl_statement = create_tbl_statement + '"' + row['Column Name'] + '" ' + row['Data Type'] + ', '
+        create_tbl_statement = create_tbl_statement[:-2] + ');'
+            
+        return create_tbl_statement

@@ -10,14 +10,29 @@ This function takes an AWS secret name as an input and returns the credentials i
 
 ## create_snowpark_session(username, password, account, role, warehouse)
 This function takes in the above five required inputs and returns a "session" variable which can be used for snowpark operations.  if you were to, for example, have a "parent" and "child" snowflake account and needed sessions for both, you could run the following:
-```
+```python
+from snowpark_utilities import snowpark_utilities as spu
 parent_session = create_snowpark_session('username', 'password', 'account', 'role', 'warehouse')
 child_session = create_snowpark_session('username', 'password', 'account', 'role', 'warehouse')
 ```
 now it's simple to differentiate execution between the two accounts
 
 ## aws_create_snowpark_session(secret_name, role, warehouse)
-This function is a version of create_snowpark_session() made explicitely for use with AWS Secrets.  simply feed it the appropriate secret name and as long as the username is filed under the key name "username" password under "password" and account under "account" it will return a session.  If you don't have this naming schema and still want to use secrets, it's simple to modify this function or fetch the credentials using fetch_credentials_from_secrets and parse the dictionary yourself
+This function is a version of create_snowpark_session() made explicitely for use with AWS Secrets.  simply feed it the appropriate secret name and as long as the username is filed under the key name "username" password under "password" and account under "account" it will return a session.  If you don't have this naming schema and still want to use secrets, it's simple to modify this function or fetch the credentials using fetch_credentials_from_secrets and parse the dictionary yourself.  Here's an easy example of how you might use this
+```python
+from snowpark_utilities import snowpark_utilities  # Replace 'your_module_name' with the actual module name.
+
+# Instantiate the class with custom arguments if needed
+snowpark_util = snowpark_utilities(
+    region_name="us-west-2",
+    cloud_provider="aws",
+    aws_access_key_id="your_access_key",
+    aws_secret_access_key="your_secret_key"
+)
+
+# Call the method with the secret name
+credentials = snowpark_util.aws_create_snowpark_session("your_secret_name")
+```
 
 ## execute_sql(session, command)
 An annoyance I've had with snowpark in terms of ease of use and code readability is that defining code and executing code are two distinctly different operations.  you can always define a piece of SQL code for operation using session.sql("sql code") but executing requires a .collect() at the end of this line.  This command takes in the given session and desired command and executes it all at once.  if you wish to do anything with .to_pandas() you will still need to define that manualy but this works great for anything else and the function returns the .collect() so you could also run the function within a pd.Dataframe()
