@@ -1,0 +1,11 @@
+LICENSE.txt
+README.md
+setup.cfg
+setup.py
+snowpark_utilities/__init__.py
+snowpark_utilities/snowpark_utilities.py
+snowpark_utilities.egg-info/PKG-INFO
+snowpark_utilities.egg-info/SOURCES.txt
+snowpark_utilities.egg-info/dependency_links.txt
+snowpark_utilities.egg-info/requires.txt
+snowpark_utilities.egg-info/top_level.txt
