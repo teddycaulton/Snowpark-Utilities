@@ -1,9 +1,9 @@
 Metadata-Version: 2.1
 Name: snowpark_utilities
-Version: 0.1.3
-Summary: A helpful package for making snowpark code easier to write and more read
+Version: 0.1.4
+Summary: A helpful package for making snowpark code easier to write and ead
 Home-page: https://teddycaulton.xyz
-Download-URL: https://github.com/teddycaulton/Snowpark-Utilities/archive/refs/tags/v_013.tar.gz
+Download-URL: https://github.com/teddycaulton/Snowpark-Utilities/archive/refs/tags/v_014.tar.gz
 Author: Theodore Caulton
 Author-email: teddycaulton@live.com
 License: MIT
@@ -23,6 +23,7 @@ Requires-Dist: snowflake-snowpark-python
 Requires-Dist: pandas
 
 # Snowpark-Utilities
+[![Downloads](https://static.pepy.tech/badge/snowpark-utilities/month)](https://pepy.tech/project/snowpark-utilities)
 ## Description
 Snowpark Utilities is a set of Python tools aimed at easing much of the repetitive work around using Snowflake's Snowpark API.  these tools aim make it easier to stand up new snowpark sessions or execute sql commands especialy in environments where multiple sessions are needed.  The module contains functionality for users who want to directly feed credentails for authentication or those who are working with a tool like AWS secrets where credentils might be stored.  The aim of this project is to make it faster and cleaner to stand up new snowpark projects without copy and pasting code from similar endeavors or combing through documentation.
 
