@@ -1,4 +1,5 @@
 # Snowpark-Utilities
+[![Downloads](https://static.pepy.tech/badge/snowpark-utilities/month)](https://pepy.tech/project/snowpark-utilities)
 ## Description
 Snowpark Utilities is a set of Python tools aimed at easing much of the repetitive work around using Snowflake's Snowpark API.  these tools aim make it easier to stand up new snowpark sessions or execute sql commands especialy in environments where multiple sessions are needed.  The module contains functionality for users who want to directly feed credentails for authentication or those who are working with a tool like AWS secrets where credentils might be stored.  The aim of this project is to make it faster and cleaner to stand up new snowpark projects without copy and pasting code from similar endeavors or combing through documentation.
 
