@@ -32,17 +32,26 @@ class snowpark_utilities:
         return 0
 
     @staticmethod
-    def create_snowpark_session(username, password, account, role = "ACCOUNTADMIN", warehouse = "COMPUTE_WH"):
-
-        connection_params = {
-        "user" : username,
-        "password" : password,
-        "account" : account,
-        "role" : role,
-        "warehouse" : warehouse
-        }
-        # create snowpark session
-        session = Session.builder.configs(connection_params).create()
+    def create_snowpark_session(account, username, password = "externalbrowser", role = "ACCOUNTADMIN", warehouse = "COMPUTE_WH"):
+        if password == "externalbrowser":
+            connection_parameters = {
+            "account": account,
+            "user": username,
+            "role":role,
+            "warehouse":warehouse,
+            "authenticator":"externalbrowser"
+            }
+            session = Session.builder.configs(connection_parameters).create()
+        else:
+            connection_params = {
+            "user" : username,
+            "password" : password,
+            "account" : account,
+            "role" : role,
+            "warehouse" : warehouse
+            }
+            # create snowpark session
+            session = Session.builder.configs(connection_params).create()
         return session
     
     def aws_create_snowpark_session(self, secret_name, role = "ACCOUNTADMIN", warehouse = "COMPUTE_WH"):
